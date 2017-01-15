@@ -17,9 +17,6 @@ const test = function(description, fn) {
 // queue of tests
 test.queue = []
 
-// simple buffer
-test.log = []
-
 /**
  * Print all passed tests to the console 
  */
@@ -74,7 +71,7 @@ test.run = function(verbose=false) {
  * @returns {Boolean}
  */
 test.passed = function() {
-  return test.queue.find((item) => { item.passed === false }) !== undefined
+  return test.queue.find((item) => item.passed === false) === undefined
 }
 
 /**

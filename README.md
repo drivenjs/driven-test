@@ -1,6 +1,6 @@
 ![Logo](https://cdn.rawgit.com/carlosmaniero/driven.js/6fdf7985504581451fbfe705fc3ddaccf7e52680/assets/img/logo.svg)
 
-Propositaly broken [![Build Status](https://travis-ci.org/carlosmaniero/driven.js.svg?branch=master)](https://travis-ci.org/carlosmaniero/driven.js)
+[![Build Status](https://travis-ci.org/carlosmaniero/driven.js.svg?branch=master)](https://travis-ci.org/carlosmaniero/driven.js)
 
 ## Manifest
 
