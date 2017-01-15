@@ -11,12 +11,26 @@ const header = chalk.gray
 class AssertError extends Error {
   constructor() {
     super()
-    const line = this.stack.split('\n')[2]
+    const line = this.getLine()
     const [file, row, col] = this.parseLine(line)
 
     this.file = file
     this.row = row
     this.col = col
+  }
+  getLine() {
+    const lines = this.stack.split('\n')
+    var current = undefined
+
+    lines.every((item) => {
+      if (item.indexOf('at test.runTest') !== -1) {
+        return false
+      }
+      current = item
+      return true
+    })
+
+    return current
   }
   parseLine(line) {
 		const regex = /\((.+)\:\d+\:\d+/g

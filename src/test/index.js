@@ -52,19 +52,21 @@ test.output = function() {
   test.outputNotPassed()
 }
 
+test.runTest = function(item) {
+  try {
+    item.fn()
+    item.passed = true
+  } catch (err) {
+    item.passed = false
+    item.err = err
+  }
+}
+
 /**
  * Run all queued tests
  */
 test.run = function(verbose=false) {
-  test.queue.forEach((item) => {
-    try {
-      item.fn()
-      item.passed = true
-    } catch (err) {
-      item.passed = false
-      item.err = err
-    }
-  })
+  test.queue.forEach(test.runTest)
 }
 
 /**
