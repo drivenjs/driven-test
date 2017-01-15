@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const path = require('path')
 const program = require('commander')
 const chalk = require('chalk')
 const fs = require('fs-sync')
@@ -9,7 +10,11 @@ program
   .option('-f, --file [url]', 'File or wildcard')
   .parse(process.argv)
 
-program.file = program.file || './tests/test_of_*'
+program.file = program.file || path.join('tests', 'test_of_*')
+
+if(!path.isAbsolute(program.file)) {
+  program.file = path.join(process.cwd(), program.file)
+}
 
 function openFiles(files) {
   files.forEach((file) => {
