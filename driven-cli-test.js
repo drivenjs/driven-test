@@ -1,15 +1,33 @@
 #!/usr/bin/env node
-var program = require('commander');
-var chalk = require('chalk');
+const program = require('commander')
+const chalk = require('chalk')
+const fs = require('fs-sync')
+const test = require('./src/test')
 
 program
-    .version('0.0.1')
-    .option('-v, --verbose', 'Run in verbose mode')
-    .parse(process.argv);
+  .version('0.0.1')
+  .option('-f, --file [url]', 'File or wildcard')
+  .parse(process.argv)
 
+program.file = program.file || './tests/test_of_*'
 
-if(program.verbose) {
-    console.log('Ok! I\'ll run the tests ' + chalk.bold.green('with') + ' the verbose mode');
-} else {
-    console.log('Ok! I\'ll run the tests ' + chalk.bold.red('without') + ' the verbose mode');
+function openFiles(files) {
+  files.forEach((file) => {
+    require(`${file}`)
+  })
+
+  test.run()
+  test.output()
+
+  if (!test.passed())
+    process.exit(1)
 }
+
+files = fs.expand(program.file)
+
+if (files.length == 0) {
+  console.log(`No test files at ${program.file}`)
+  process.exit(1)
+}
+
+openFiles(files)
