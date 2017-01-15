@@ -3,7 +3,7 @@ const path = require('path')
 const program = require('commander')
 const chalk = require('chalk')
 const fs = require('fs-sync')
-const test = require('./src/test')
+const test = require('./drivenjs/test')
 
 program
   .version('0.0.1')

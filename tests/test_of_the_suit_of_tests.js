@@ -1,5 +1,5 @@
-var test = require('../src/test')
-var testExceptions = require('../src/test/exceptions.js')
+const test  = require('../drivenjs/test')
+const testExceptions = require('../drivenjs/test/exceptions.js')
 
 with(test) {
 

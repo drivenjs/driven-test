@@ -1,9 +1,10 @@
 {
-  "name": "driven.js",
+  "name": "drivenjs",
   "version": "0.0.1",
   "description": "Just another front-end framework but simple",
+  "main": "./drivenjs",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel drivenjs -d lib",
     "test": "node driven-cli-test.js"
   },
   "repository": {
