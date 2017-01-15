@@ -5,7 +5,7 @@
   "main": "./drivenjs",
   "scripts": {
     "build": "babel drivenjs -d lib",
-    "test": "node driven-cli-test.js"
+    "test": "driven-cli test"
   },
   "repository": {
     "type": "git",
