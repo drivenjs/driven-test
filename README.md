@@ -1,5 +1,5 @@
 # driven.js
-![Logo](assets/img/logo.svg)
+![Logo](https://raw.githubusercontent.com/carlosmaniero/driven.js/master/assets/img/logo.svg)
 
 ## Manifest
 
