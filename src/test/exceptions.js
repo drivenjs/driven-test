@@ -67,10 +67,6 @@ class AssertError extends Error {
     this.printInfoHeader()
     console.log(this.formatHeader(this.file))
   }
-  printFooter() {
-    console.log("Full stack")
-    console.log(this.stack)
-  }
   prettyStack() {
     const data = fs.read(this.file)
     const lines = data.split('\n')
@@ -81,8 +77,6 @@ class AssertError extends Error {
     for (var i = minRow; i < maxRow; i++) {
       this.printLine(lines[i], i)
     }
-
-    this.printFooter()
   }  
 }
 
