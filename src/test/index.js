@@ -72,7 +72,7 @@ test.run = function(verbose=false) {
  * @returns {Boolean}
  */
 test.passed = function() {
-  return test.queue.find((item) => { item.passed === false }) === undefined
+  return test.queue.find((item) => { item.passed === false }) !== undefined
 }
 
 /**
