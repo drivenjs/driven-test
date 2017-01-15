@@ -4,7 +4,7 @@
   "description": "Just another front-end framework but simple",
   "scripts": {
     "build": "babel src -d lib",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node driven-cli-test.js"
   },
   "repository": {
     "type": "git",
