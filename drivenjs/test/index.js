@@ -14,6 +14,8 @@ const test = function(description, fn) {
   test.queue.push({description: description, fn: fn})
 }
 
+test.exceptions = exceptions
+
 // queue of tests
 test.queue = []
 

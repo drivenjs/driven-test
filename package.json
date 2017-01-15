@@ -1,6 +1,6 @@
 {
   "name": "drivenjs",
-  "version": "0.0.2",
+  "version": "0.0.21",
   "description": "Just another front-end framework but simple",
   "main": "./drivenjs",
   "scripts": {

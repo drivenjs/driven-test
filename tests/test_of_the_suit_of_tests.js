@@ -1,5 +1,6 @@
-const test  = require('../drivenjs/test')
-const testExceptions = require('../drivenjs/test/exceptions.js')
+const drivenjs  = require('drivenjs')
+const test = drivenjs.test
+const exceptions = test.exceptions
 
 with(test) {
 
@@ -11,7 +12,7 @@ with(test) {
   })
 
   test('throw AssertError when a pass false to asset', () => {
-    assertThrow(() => assert(false), testExceptions.AssertError)
+    assertThrow(() => assert(false), exceptions.AssertError)
   })
 
   test('throw error if assetThrow was called and no exception is raised', () => {
