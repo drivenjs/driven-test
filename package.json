@@ -1,0 +1,31 @@
+{
+  "name": "driven.js",
+  "version": "0.0.1",
+  "description": "Just another front-end framework but simple",
+  "scripts": {
+    "build": "babel src -d lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlosmaniero/driven.js.git"
+  },
+  "author": "Carlos Maniero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlosmaniero/driven.js/issues"
+  },
+  "homepage": "https://github.com/carlosmaniero/driven.js#readme",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-env": "^1.1.8"
+  },
+  "bin": {
+    "driven-cli": "./driven-cli.js"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0"
+  }
+}
