@@ -19,12 +19,11 @@ class DescribeRegister {
     this.tests = []
     this.description = description
     this.setup = () => undefined
+    this.teardown = () => undefined
+    this.beforeAll = () => undefined
+    this.afterAll = () => undefined
 
     registerDescribe(this)
-  }
-
-  setSetup(fn) {
-    this.setup = fn
   }
 
   passed() {
@@ -36,10 +35,14 @@ class DescribeRegister {
   }
 
   *runTests() {
+    this.setup()
     for(let test of this.tests) {
+      this.beforeAll()
       test.run()
+      this.afterAll()
       yield test
     }
+    this.teardown()
   }
 }
 

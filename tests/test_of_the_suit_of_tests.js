@@ -3,19 +3,30 @@ const drivenTest = drivenjs.test
 const exceptions = drivenTest.exceptions
 
 with(drivenTest) {
-  var setuped = false
-  var calls = 0
+  var tearDownCalled = false
 
   describe('test the drivenjs test framework', () => {
+    var setuped = false
+    var beforeCalls = 0
+    var afterCalls = 0
+
     setup(() => {
       setuped = true
     })
 
     beforeAll(() => {
-      calls++
+      beforeCalls++
     })
 
-    drivenTest.test('register the test when start a test', () => {
+    afterAll(() => {
+      afterCalls++
+    })
+
+    teardown(() => {
+      tearDownCalled = true    
+    })
+
+    test('register the test when start a test', () => {
       const thisTest = drivenTest
         .register
           .describes
@@ -45,6 +56,25 @@ with(drivenTest) {
 
     test('call setup before tests', () => {
       assert(setuped)
+    })
+
+    test('beforeAll is called before run a test', () => {
+      assert(beforeCalls === 6)
+    })
+
+    test('afterAll is called after run a test', () => {
+      assert(afterCalls === 6)
+    })
+
+    test('teardown isn\'t called', () => {
+      assert(!tearDownCalled)
+    })
+  })
+
+  describe('another test describe to test the teardown', () => {
+      
+    test('teardown of previus describe is called', () => {
+      assert(tearDownCalled)
     })
 
   })

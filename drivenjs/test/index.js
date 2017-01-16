@@ -29,11 +29,28 @@ var drivenTest = {
    * Run before execute all tests
    */
   setup(fn) {
-    fn()
+    register.lastDescribe.setup = fn
   },
 
+  /**
+   * Run after execute all tests
+   */
+  teardown(fn) {
+    register.lastDescribe.teardown = fn
+  },
+
+  /**
+   * Set the beforeAll function
+   */
   beforeAll(fn) { 
-    this.beforeAllFn = fn  
+    register.lastDescribe.beforeAll = fn
+  },
+
+  /**
+   * Set the afterAll function
+   */
+  afterAll(fn) { 
+    register.lastDescribe.afterAll = fn
   },
 
   /**

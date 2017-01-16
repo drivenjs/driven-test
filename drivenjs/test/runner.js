@@ -11,9 +11,9 @@ function showLog(error) {
 }
 
 function printHeader(text) {
-  console.log('===========================================================================================')
-  console.log(text)
-  console.log('===========================================================================================')
+  console.log('------------------------------------------------------------------------------------------')
+  console.log(chalk.bold("Describe: ") + text)
+  console.log('------------------------------------------------------------------------------------------')
 }
 
 exports.run = () => {
@@ -33,8 +33,10 @@ exports.run = () => {
         showLog(test.error)
       }
     }
+    console.log()
   })
-  console.log('===========================================================================================')
+
+  console.log()
   console.timeEnd("Total time")
   console.log("Ran " + (totalPassed + totalError) + " tests in. " + chalk.green(totalPassed) + " with success and " + chalk.red(totalError) + " with errors.")
 }
