@@ -6,5 +6,5 @@
 
 All fucking line of this fucking framework will be written oriented by tests.
 
-All fucking feature  will be simple.
-Complexity is a fucking shit that we don't need to deal.
+All fucking features will be simple.
+Complexity is a fucking shit that we don't need to deal with.
