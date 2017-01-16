@@ -13,24 +13,13 @@ class AssertError extends Error {
     super()
     const line = this.getLine()
     const [file, row, col] = this.parseLine(line)
-
     this.file = file
     this.row = row
     this.col = col
   }
   getLine() {
     const lines = this.stack.split('\n')
-    var current = undefined
-
-    lines.every((item) => {
-      if (item.indexOf('at test.runTest') !== -1) {
-        return false
-      }
-      current = item
-      return true
-    })
-
-    return current
+    return lines.find((line) => line.indexOf('TestRegister.test') !== -1)
   }
   parseLine(line) {
 		const regex = /\((.+)\:\d+\:\d+/g
@@ -48,9 +37,9 @@ class AssertError extends Error {
   printLine(line, current) {
     const strRow = this.formatLineNum(current + 1)
     if (current === this.row) {
-      console.log(strRow + errorLine(line))
+      return strRow + errorLine(line)
     } else {
-      console.log(defaultLine(strRow + line))
+      return defaultLine(strRow + line)
     }
   }
   formatHeader(text) {
@@ -61,34 +50,42 @@ class AssertError extends Error {
     )
   }
   printInfoHeader() {
-    console.log(header.bold("Assert Error"))
+    return header.bold("Assert Error")
   }
   printHeader() {
-    this.printInfoHeader()
-    console.log(this.formatHeader(this.file))
+    var info = this.printInfoHeader()
+    return info + '\n' + this.formatHeader(this.file)
   }
   prettyStack() {
-    const data = fs.read(this.file)
+    var data;
+    try {
+      data = fs.read(this.file)
+    } catch (err) {
+      return this.stack
+    }
     const lines = data.split('\n')
     const minRow = Math.max(0, this.row - 3)
     const maxRow = Math.min(lines.length, this.row + 3)
-    this.printHeader()
+    var output = this.printHeader()
 
     for (var i = minRow; i < maxRow; i++) {
-      this.printLine(lines[i], i)
+      output += '\n'
+      output += this.printLine(lines[i], i)
     }
+
+    return output
   }  
 }
 
 class AssertNonThrowError extends AssertError {
   printInfoHeader() {
-    console.log(header.bold("Non Throw error - The method does not throw an exception"))
+    return header.bold("Non Throw error - The method does not throw an exception")
   }
 }
 
 class AssertInvalidThrowError extends AssertError {
   printInfoHeader() {
-    console.log(header.bold("Invalid throw error - The method raised an eception but the type is diferent then expected"))
+    return header.bold("Invalid throw error - The method raised an eception but the type is diferent then expected")
   }
 }
 

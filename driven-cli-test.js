@@ -3,7 +3,8 @@ const path = require('path')
 const program = require('commander')
 const chalk = require('chalk')
 const fs = require('fs-sync')
-const test = require('./drivenjs/test')
+const driven = require('drivenjs')
+const drivenTest = driven.test
 
 program
   .version('0.0.1')
@@ -21,10 +22,9 @@ function openFiles(files) {
     require(`${file}`)
   })
 
-  test.run()
-  test.output()
+  drivenTest.runner.run()
 
-  if (!test.passed())
+  if (!drivenTest.register.passed())
     process.exit(1)
 }
 

@@ -1,60 +1,51 @@
 const drivenjs  = require('drivenjs')
-const test = drivenjs.test
-const exceptions = test.exceptions
+const drivenTest = drivenjs.test
+const exceptions = drivenTest.exceptions
 
-with(test) {
+with(drivenTest) {
+  var setuped = false
+  var calls = 0
 
-  test('add the test.queue when start a test', () => {
-    const testItem = test.queue.find((item) => { 
-      return item.description === 'add the test.queue when start a test'
+  describe('test the drivenjs test framework', () => {
+    setup(() => {
+      setuped = true
     })
-    assert(testItem !== undefined)
-  })
 
-  test('throw AssertError when a pass false to asset', () => {
-    assertThrow(() => assert(false), exceptions.AssertError)
-  })
-
-  test('throw error if assetThrow was called and no exception is raised', () => {
-    assertThrow(() => {
-      assertThrow(() => "no error here")
+    beforeAll(() => {
+      calls++
     })
-  })
 
-  test('throw error if the exception type is diferent of the provide', () => {
-    assertThrow(() => {
+    drivenTest.test('register the test when start a test', () => {
+      const thisTest = drivenTest
+        .register
+          .describes
+          .find((describe) => describe.description === 'test the drivenjs test framework')
+            .tests
+            .find((test) => test.description === 'register the test when start a test')
+      assert(thisTest !== undefined)
+    })
+
+    test('throw AssertError when a pass false to asset', () => {
+      assertThrow(() => assert(false), exceptions.AssertError)
+    })
+
+    test('throw error if assetThrow was called and no exception is raised', () => {
       assertThrow(() => {
-        throw "no error here"
-      }, Number)
+        assertThrow(() => "no error here")
+      })
     })
-  })
 
-  test('passed returns true if all tests are passed', () => {
-    const originalQueue = test.queue
-    test.queue = [{
-      passed: true  
-    }]
-    try {
-      assert(test.passed())
-    } catch(err) {
-      // Prevent a undebuggable error stack
-      throw err
-    } finally {
-      test.queue = originalQueue
-    }
-  })
+    test('throw error if the exception type is diferent of the provide', () => {
+      assertThrow(() => {
+        assertThrow(() => {
+          throw "no error here"
+        }, Number)
+      })
+    })
 
-  test('passed returns false if any test fail', () => {
-    const originalPassed = test.queue[0].passed
-    test.queue[0].passed = false
-    try {
-      assert(!test.passed())
-    } catch(err) {
-      // Prevent a undebuggable error stack
-      throw err
-    } finally {
-      test.queue[0].passed = originalPassed
-    }
-  })
+    test('call setup before tests', () => {
+      assert(setuped)
+    })
 
+  })
 }
