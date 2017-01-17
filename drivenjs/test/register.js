@@ -1,20 +1,20 @@
-const describes = []
+const suites = []
 
 var exports = module.exports = {
-  describes: describes,
+  suites: suites,
 
   passed() {
-    return describes.find((describe) => describe.passed() === false) === undefined 
+    return suites.find((suite) => suite.passed() === false) === undefined 
   }
 }
 
-registerDescribe = (describe) => {
-  exports.lastDescribe = describe
-  describes.push(describe)
+registerSuite = (suite) => {
+  exports.lastSuite = suite
+  suites.push(suite)
 }
 
 
-class DescribeRegister {
+class SuiteRegister {
   constructor(description) {
     this.tests = []
     this.description = description
@@ -23,7 +23,7 @@ class DescribeRegister {
     this.beforeAll = () => undefined
     this.afterAll = () => undefined
 
-    registerDescribe(this)
+    registerSuite(this)
   }
 
   passed() {
@@ -65,5 +65,5 @@ class TestRegister {
 
 }
 
-exports.DescribeRegister = DescribeRegister
+exports.SuiteRegister = SuiteRegister
 exports.TestRegister = TestRegister

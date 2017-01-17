@@ -5,7 +5,7 @@ const exceptions = drivenTest.exceptions
 with(drivenTest) {
   var tearDownCalled = false
 
-  describe('test the drivenjs test framework', () => {
+  suite('test the drivenjs test framework', () => {
     var setuped = false
     var beforeCalls = 0
     var afterCalls = 0
@@ -29,8 +29,8 @@ with(drivenTest) {
     test('register the test when start a test', () => {
       const thisTest = drivenTest
         .register
-          .describes
-          .find((describe) => describe.description === 'test the drivenjs test framework')
+          .suites
+          .find((suite) => suite.description === 'test the drivenjs test framework')
             .tests
             .find((test) => test.description === 'register the test when start a test')
       assert(thisTest !== undefined)
@@ -71,15 +71,15 @@ with(drivenTest) {
     })
   })
 
-  describe('another test describe to test the teardown', () => {
+  suite('another test suite to test the teardown', () => {
       
-    test('teardown of previus describe is called', () => {
+    test('teardown of previus suite is called', () => {
       assert(tearDownCalled)
     })
 
   })
 
-  describe('test asserts', () => {
+  suite('test asserts', () => {
     test('assertTrue', () => {
       assertTrue(true)    
       assertThrow(() => assertTrue(false), exceptions.AssertError)

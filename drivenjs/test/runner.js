@@ -12,7 +12,7 @@ function showLog(error) {
 
 function printHeader(text) {
   console.log('------------------------------------------------------------------------------------------')
-  console.log(chalk.bold("Describe: ") + text)
+  console.log(chalk.bold("Suite: ") + text)
   console.log('------------------------------------------------------------------------------------------')
 }
 
@@ -21,9 +21,9 @@ exports.run = () => {
   var totalError = 0
 
   console.time("Total time");
-  register.describes.forEach((describe) => {
-    printHeader(describe.description)
-    for(test of describe.runTests()) {
+  register.suites.forEach((suite) => {
+    printHeader(suite.description)
+    for(test of suite.runTests()) {
       if (test.passed) {
         totalPassed++
         console.log(chalk.bold.green('✔') + ' ' + test.description)

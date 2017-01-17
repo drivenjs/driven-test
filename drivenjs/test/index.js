@@ -6,7 +6,7 @@ const runner = require('./runner')
 
 var drivenTest = {
   /**
-   * This is the test function this is used to describe your drivenTest.
+   * This is the test function this is used to suite your drivenTest.
    * @example
    * test("1 + 1 is 2", () => {
    *   assert(1 + 1 === 2)
@@ -15,13 +15,13 @@ var drivenTest = {
    * @param {function} fn - The test function 
    */
   test(description, fn) {
-    register.lastDescribe.addTest(
+    register.lastSuite.addTest(
       new register.TestRegister(description, fn)
     )
   },
 
-  describe(msg, discoverTests) {
-    new register.DescribeRegister(msg)
+  suite(msg, discoverTests) {
+    new register.SuiteRegister(msg)
     discoverTests()
   },
 
@@ -29,28 +29,28 @@ var drivenTest = {
    * Run before execute all tests
    */
   setup(fn) {
-    register.lastDescribe.setup = fn
+    register.lastSuite.setup = fn
   },
 
   /**
    * Run after execute all tests
    */
   teardown(fn) {
-    register.lastDescribe.teardown = fn
+    register.lastSuite.teardown = fn
   },
 
   /**
    * Set the beforeAll function
    */
   beforeAll(fn) { 
-    register.lastDescribe.beforeAll = fn
+    register.lastSuite.beforeAll = fn
   },
 
   /**
    * Set the afterAll function
    */
   afterAll(fn) { 
-    register.lastDescribe.afterAll = fn
+    register.lastSuite.afterAll = fn
   },
 
   /**
