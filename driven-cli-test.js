@@ -11,7 +11,7 @@ program
   .option('-f, --file [url]', 'File or wildcard')
   .parse(process.argv)
 
-program.file = program.file || path.join('tests', 'test_of_*')
+program.file = program.file || path.join('**', 'test_*')
 
 if(!path.isAbsolute(program.file)) {
   program.file = path.join(process.cwd(), program.file)

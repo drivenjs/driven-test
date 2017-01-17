@@ -32,7 +32,7 @@ class AssertError extends Error {
     }
   }
   formatLineNum(num) {
-    const formated = ("    " + num + 1).slice(-4)
+    const formated = ("    " + (num + 1)).slice(-4)
     return header(formated + " ")
   }
   printLine(line, current) {
