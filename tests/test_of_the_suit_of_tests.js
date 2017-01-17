@@ -78,4 +78,31 @@ with(drivenTest) {
     })
 
   })
+
+  describe('test asserts', () => {
+    test('assertTrue', () => {
+      assertTrue(true)    
+      assertThrow(() => assertTrue(false), exceptions.AssertError)
+    })
+    test('assertFalse', () => {
+      assertFalse(false)
+      assertThrow(() => assertFalse(true), exceptions.AssertError)
+    })
+    test('assertEqual', () => {
+      assertEqual(1, 1)
+      assertThrow(() => assertEqual('1', 1), exceptions.AssertError)
+    })
+    test('assertNotEqual', () => {
+      assertNotEqual(1, '1')
+      assertThrow(() => assertNotEqual('1', '1'), exceptions.AssertError)
+    })
+    test('assertIn', () => {
+      assertIn(1, [1, 2, 3, 4])
+      assertThrow(() => assertIn('1', [1, 2, 3, 4]), exceptions.AssertError)
+    })
+    test('assertNotIn', () => {
+      assertNotIn('1', [1, 2, 3, 4])
+      assertThrow(() => assertNotIn(1, [1, 2, 3, 4]), exceptions.AssertError)
+    })
+  })
 }

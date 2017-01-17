@@ -9,13 +9,14 @@ const header = chalk.gray
 
 // Simple class to raise assertion errors
 class AssertError extends Error {
-  constructor() {
+  constructor(msg) {
     super()
     const line = this.getLine()
     const [file, row, col] = this.parseLine(line)
     this.file = file
     this.row = row
     this.col = col
+    this.msg = msg
   }
   getLine() {
     const lines = this.stack.split('\n')
@@ -43,14 +44,14 @@ class AssertError extends Error {
     }
   }
   formatHeader(text) {
-    const formater = "                                                                               "
-    const textLimit = Math.max(80, text.length)
-    return header(
-      (text + formater).substring(0, textLimit)
-    )
+    return header(text)
   }
   printInfoHeader() {
-    return header.bold("Assert Error")
+    if(!this.msg) {
+      return header.bold("Assert Error")
+    } else {
+      return header.bold("Assert Error: ") + header(' ' + this.msg)
+    }
   }
   printHeader() {
     var info = this.printInfoHeader()
