@@ -30,8 +30,8 @@ class SuiteRegister {
     return this.tests.find((test) => test.passed === false) === undefined
   }
 
-  addTest(test) {
-    this.tests.push(test)
+  addTest(description, fn) {
+    this.tests.push(new TestRegister(description, fn))
   }
 
   *runTests() {
