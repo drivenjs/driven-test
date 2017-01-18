@@ -1,15 +1,5 @@
-const drivenjs  = require('drivenjs')
-
-const suite = require('drivenjs').test.suite
-const test = require('drivenjs').test.test
-const assert = require('drivenjs').test.assert 
-const setup = require('drivenjs').test.setup
-const teardown = require('drivenjs').test.teardown
-const beforeAll = require('drivenjs').test.beforeAll
-const afterAll = require('drivenjs').test.afterAll
-
-const drivenTest = drivenjs.test
-const exceptions = drivenTest.exceptions
+const drivenTest = require('drivenjs').test
+const {suite, test, assert, setup, teardown, beforeAll, afterAll, exceptions} = drivenTest
 
 var tearDownCalled = false
 

@@ -1,11 +1,4 @@
-const suite = require('drivenjs').test.suite
-const test = require('drivenjs').test.test
-const assert = require('drivenjs').test.assert 
-const setup = require('drivenjs').test.setup
-const teardown = require('drivenjs').test.teardown
-const beforeAll = require('drivenjs').test.beforeAll
-const afterAll = require('drivenjs').test.afterAll
-const exceptions = require('drivenjs').test.exceptions
+const {suite, test, assert, exceptions} = require('drivenjs').test
 
 suite('test asserts', () => {
   test('assert.true', () => {
