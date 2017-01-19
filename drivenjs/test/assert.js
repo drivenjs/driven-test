@@ -54,6 +54,16 @@ module.exports = {
   },
 
   /**
+   * Assert if a value is defined
+   * @ param {} value
+   * @throws {AssertError} if truth is false
+   */
+  defined(value, message="") {
+    var errorMessage = message + " " + value + " is not defined"
+    assert(value !== undefined, errorMessage)
+  },
+
+  /**
    * Assert if an exception is raised
    * @ param {function} fn - A function then raises exception
    * @ param {exception} exception - A optional exception type
@@ -97,6 +107,16 @@ module.exports = {
     in(val, iter, message="") {
       var errorMessage = message + " " + val + " is in [" + iter + "]"
       assert(iter.find((elem) => elem === val) === undefined, errorMessage)
+    },
+
+    /**
+     * Assert if a value is defined
+     * @ param {} value
+     * @throws {AssertError} if truth is false
+     */
+    defined(value, message="") {
+      var errorMessage = message + " " + value + " is defined"
+      assert(value === undefined, errorMessage)
     },
   }
 }

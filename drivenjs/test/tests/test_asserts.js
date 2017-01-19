@@ -13,6 +13,10 @@ suite('test asserts', () => {
     assert.equal(1, 1)
     assert.throw(() => assert.equal('1', 1), exceptions.AssertError)
   })
+  test('assert.defined', () => {
+    assert.defined(1)
+    assert.throw(() => assert.defined(undefined), exceptions.AssertError)
+  })
   test('assert.not.equal', () => {
     assert.not.equal(1, '1')
     assert.throw(() => assert.not.equal('1', '1'), exceptions.AssertError)
@@ -24,5 +28,9 @@ suite('test asserts', () => {
   test('assert.not.in', () => {
     assert.not.in('1', [1, 2, 3, 4])
     assert.throw(() => assert.not.in(1, [1, 2, 3, 4]), exceptions.AssertError)
+  })
+  test('assert.not.defined', () => {
+    assert.not.defined(undefined)
+    assert.throw(() => assert.not.defined(1), exceptions.AssertError)
   })
 })
