@@ -1,7 +1,11 @@
-if(typeof window === 'undefined') {
-  // use jsdom inside nodejs
-  const jsdom = require('jsdom').jsdom
-  module.exports = jsdom().defaultView
-} else {
-  module.exports = window
+const get_window = () => {
+  if(typeof window === 'undefined') {
+    // use jsdom inside nodejs
+    const jsdom = require('jsdom').jsdom
+    return jsdom().defaultView
+  } else {
+    return window
+  }
 }
+
+module.exports = get_window()

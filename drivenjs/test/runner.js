@@ -2,7 +2,7 @@ const register = require('./register')
 const chalk = require('chalk')
 var exports = module.exports = {}
 
-function showLog(error) {
+const showLog = (error) => {
   try {
     console.log(error.prettyStack())
   } catch(err) {
@@ -10,7 +10,7 @@ function showLog(error) {
   }
 }
 
-function printHeader(text) {
+const printHeader = (text) => {
   console.log('------------------------------------------------------------------------------------------')
   console.log(chalk.bold("Suite: ") + text)
   console.log('------------------------------------------------------------------------------------------')

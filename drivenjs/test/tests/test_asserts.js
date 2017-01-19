@@ -2,7 +2,7 @@ const {suite, test, assert, exceptions} = require('drivenjs').test
 
 suite('test asserts', () => {
   test('assert.true', () => {
-    assert.true(true)    
+    assert.true(true)
     assert.throw(() => assert.true(false), exceptions.AssertError)
   })
   test('assert.false', () => {

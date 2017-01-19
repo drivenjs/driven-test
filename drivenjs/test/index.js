@@ -3,7 +3,7 @@ const register = require('./register')
 const runner = require('./runner')
 const assert = require('./assert')
 
-var drivenTest = {
+const drivenTest = {
   /**
    * Create a new suite of tests
    * @param {string} description - The description of the suit

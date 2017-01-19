@@ -5,9 +5,17 @@ const exceptions = require('./exceptions')
  * @ param {Boolean} truth
  * @throws {AssertError} if truth is false
  */
-function assert(truth, message="") {
+assert = (truth, message="") => {
   if (truth !== true)
     throw new exceptions.AssertError(message)
+}
+
+
+/**
+ * Validate if the exception is equal
+ */
+validateException = (err, exception) => {
+  return exception !== undefined && !(err instanceof exception)
 }
 
 module.exports = {
@@ -17,7 +25,7 @@ module.exports = {
    * @throws {AssertError} if truth is false
    */
   true(truth, message="") {
-    var errorMessage = message + " " + truth + " is not true"
+    const errorMessage = message + " " + truth + " is not true"
     assert(truth === true, errorMessage)
   },
 
@@ -27,7 +35,7 @@ module.exports = {
    * @throws {AssertError} if truth is false
    */
   false(falsely, message="") {
-    var errorMessage = message + " " + falsely + " is not false"
+    const errorMessage = message + " " + falsely + " is not false"
     assert(falsely === false, errorMessage)
   },
 
@@ -38,7 +46,7 @@ module.exports = {
    * @throws {AssertError} if truth is false
    */
   equal(val1, val2, message="") {
-    var errorMessage = message + " " + val1 + " is not equal to " + val2
+    const errorMessage = message + " " + val1 + " is not equal to " + val2
     assert(val1 === val2, errorMessage)
   },
 
@@ -49,7 +57,7 @@ module.exports = {
    * @throws {AssertError} if truth is false
    */
   in(val, iter, message="") {
-    var errorMessage = message + " " + val + " is not in [" + iter + "]"
+    const errorMessage = message + " " + val + " is not in [" + iter + "]"
     assert(iter.find((elem) => elem === val) !== undefined, errorMessage)
   },
 
@@ -59,7 +67,7 @@ module.exports = {
    * @throws {AssertError} if truth is false
    */
   defined(value, message="") {
-    var errorMessage = message + " " + value + " is not defined"
+    const errorMessage = message + " " + value + " is not defined"
     assert(value !== undefined, errorMessage)
   },
 
@@ -72,18 +80,15 @@ module.exports = {
    * @throws {AssertNonThrowError} if no exception raised
    */
   throw(fn, exception) {
-    var raised = false;
-    debugger;
-    try{
+    try {
       fn()
     } catch (err) {
-      raised = true
-      if (exception !== undefined && !(err instanceof exception))
+      if (validateException(err, exception)) {
         throw new exceptions.AssertInvalidThrowError()
+      }
+      return
     }
-
-    if (!raised) 
-      throw new exceptions.AssertNonThrowError()
+    throw new exceptions.AssertNonThrowError()
   },
 
   /**
@@ -94,7 +99,7 @@ module.exports = {
    */
   not: {
     equal(val1, val2, message="") {
-      var errorMessage = message + " " + val1 + " is equal to " + val2
+      const errorMessage = message + " " + val1 + " is equal to " + val2
       assert(val1 !== val2, errorMessage)
     },
 
@@ -105,7 +110,7 @@ module.exports = {
      * @throws {AssertError} if truth is false
      */
     in(val, iter, message="") {
-      var errorMessage = message + " " + val + " is in [" + iter + "]"
+      const errorMessage = message + " " + val + " is in [" + iter + "]"
       assert(iter.find((elem) => elem === val) === undefined, errorMessage)
     },
 
@@ -115,7 +120,7 @@ module.exports = {
      * @throws {AssertError} if truth is false
      */
     defined(value, message="") {
-      var errorMessage = message + " " + value + " is defined"
+      const errorMessage = message + " " + value + " is defined"
       assert(value === undefined, errorMessage)
     },
   }
