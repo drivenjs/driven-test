@@ -28,6 +28,7 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
-    "fs-sync": "^1.0.3"
+    "fs-sync": "^1.0.3",
+    "jsdom": "^9.9.1"
   }
 }

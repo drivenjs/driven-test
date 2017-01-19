@@ -1,5 +1,7 @@
+const dom = require('./dom')
 const test = require('./test')
 
 module.exports = {
-  test: test 
+  dom: dom,
+  test: test
 }
