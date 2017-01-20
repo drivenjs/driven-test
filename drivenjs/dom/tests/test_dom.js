@@ -7,7 +7,4 @@ suite('Simulate the dom in nodejs if not in browser', () => {
     assert.defined(dom.document)
   })
 
-  test('Object needs to have get and set', () => {
-  })
-
 })
