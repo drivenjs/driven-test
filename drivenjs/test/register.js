@@ -14,11 +14,7 @@ const toPromise = (fn) => {
 
 
 var exports = module.exports = {
-  suites: suites,
-
-  passed() {
-    return suites.find((suite) => suite.passed() === false) === undefined 
-  }
+  suites: suites
 }
 
 registerSuite = (suite) => {
@@ -143,12 +139,9 @@ class TestRegister {
       ).then(resolve, reject)
 
       this.after()
-    }).catch(
-      (err) => {
-        testFail(this)
-      }).then(
-      () => testOk(this),
-      () => testFail(this)
+    }).then(
+      () => { testOk(this) },
+      () => { testFail(this) }
     )  
   }
 }
