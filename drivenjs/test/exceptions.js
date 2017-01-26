@@ -11,17 +11,33 @@ const header = chalk.gray
 class AssertError extends Error {
   constructor(msg) {
     super()
-    const line = this.getTestLine()
-    const [file, row, col] = this.parseLine(line)
-    this.file = file
-    this.row = row
-    this.col = col
     this.msg = msg
+
+    try {
+      const line = this.getTestLine()
+      const [file, row, col] = this.parseLine(line)
+
+      this.row = row
+      this.col = col
+      this.canShowLine = true
+      this.file = file
+
+    } catch (err) {
+      this.canShowLine = false
+    }
   }
 
   getTestLine() {
+    var lineNum = 0
     const lines = this.stack.split('\n')
-    return lines.find((line) => line.indexOf('TestRegister.test') !== -1)
+    const notExists = lines.every((line, index) => {
+      lineNum = index
+      return line.indexOf('at Assert.') === -1
+    })
+
+    if(!notExists) {
+      return lines[lineNum + 1]
+    }
   }
 
   parseLine(line) {
@@ -49,6 +65,7 @@ class AssertError extends Error {
   }
 
   formatHeader(text) {
+    text = text || ''
     return header(text)
   }
 
@@ -68,7 +85,7 @@ class AssertError extends Error {
   getOutput(lines) {
     const minRow = Math.max(0, this.row - 3)
     const maxRow = Math.min(lines.length, this.row + 3)
-    var output = this.getHeader()
+    var output = ''
 
     for (let i = minRow; i < maxRow; i++) {
       output += '\n'
@@ -79,12 +96,18 @@ class AssertError extends Error {
   }
   
   prettyStack() {
-    try {
-      const data = fs.read(this.file)
-      const lines = data.split('\n')
-      return this.getOutput(lines)
-    } catch (err) {
-      return this.stack
+    var output = this.getHeader()
+
+    if (this.canShowLine) {
+      try {
+        const data = fs.read(this.file)
+        const lines = data.split('\n')
+        return output + this.getOutput(lines)
+      } catch (err) {
+        return this.stack
+      }
+    } else {
+      return output + this.stack
     }
   }  
 }

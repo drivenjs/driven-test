@@ -18,7 +18,7 @@ validateException = (err, exception) => {
   return exception !== undefined && !(err instanceof exception)
 }
 
-module.exports = {
+class Assert {
   /**
    * Assert if is true function
    * @ param {Boolean} truth
@@ -27,7 +27,7 @@ module.exports = {
   true(truth, message="") {
     const errorMessage = message + " " + truth + " is not true"
     assert(truth === true, errorMessage)
-  },
+  }
 
   /**
    * Assert if is false function
@@ -37,7 +37,7 @@ module.exports = {
   false(falsely, message="") {
     const errorMessage = message + " " + falsely + " is not false"
     assert(falsely === false, errorMessage)
-  },
+  }
 
   /**
    * Assert if two values are equals function
@@ -48,7 +48,7 @@ module.exports = {
   equal(val1, val2, message="") {
     const errorMessage = message + " " + val1 + " is not equal to " + val2
     assert(val1 === val2, errorMessage)
-  },
+  }
 
   /**
    * Assert if a value is in list a function
@@ -59,7 +59,7 @@ module.exports = {
   in(val, iter, message="") {
     const errorMessage = message + " " + val + " is not in [" + iter + "]"
     assert(iter.find((elem) => elem === val) !== undefined, errorMessage)
-  },
+  }
 
   /**
    * Assert if a value is defined
@@ -69,7 +69,7 @@ module.exports = {
   defined(value, message="") {
     const errorMessage = message + " " + value + " is not defined"
     assert(value !== undefined, errorMessage)
-  },
+  }
 
   /**
    * Assert if an exception is raised
@@ -89,39 +89,43 @@ module.exports = {
       return
     }
     throw new exceptions.AssertNonThrowError()
-  },
+  }
 
-  /**
-   * Assert if two values are not equals function
-   * @ param val1
-   * @ param val2
-   * @throws {AssertError} if truth is false
-   */
-  not: {
-    equal(val1, val2, message="") {
-      const errorMessage = message + " " + val1 + " is equal to " + val2
-      assert(val1 !== val2, errorMessage)
-    },
+  constructor() {
+    this.not = {
+      /**
+       * Assert if two values are not equals function
+       * @ param val1
+       * @ param val2
+       * @throws {AssertError} if truth is false
+       */
+      equal(val1, val2, message="") {
+        const errorMessage = message + " " + val1 + " is equal to " + val2
+        assert(val1 !== val2, errorMessage)
+      },
 
-    /**
-     * Assert if a value is not in a list function
-     * @ param val
-     * @ param iter
-     * @throws {AssertError} if truth is false
-     */
-    in(val, iter, message="") {
-      const errorMessage = message + " " + val + " is in [" + iter + "]"
-      assert(iter.find((elem) => elem === val) === undefined, errorMessage)
-    },
+      /**
+       * Assert if a value is not in a list function
+       * @ param val
+       * @ param iter
+       * @throws {AssertError} if truth is false
+       */
+      in(val, iter, message="") {
+        const errorMessage = message + " " + val + " is in [" + iter + "]"
+        assert(iter.find((elem) => elem === val) === undefined, errorMessage)
+      },
 
-    /**
-     * Assert if a value is defined
-     * @ param {} value
-     * @throws {AssertError} if truth is false
-     */
-    defined(value, message="") {
-      const errorMessage = message + " " + value + " is defined"
-      assert(value === undefined, errorMessage)
-    },
+      /**
+       * Assert if a value is defined
+       * @ param {} value
+       * @throws {AssertError} if truth is false
+       */
+      defined(value, message="") {
+        const errorMessage = message + " " + value + " is defined"
+        assert(value === undefined, errorMessage)
+      },
+    }
   }
 }
+
+module.exports = new Assert()

@@ -2,6 +2,7 @@ const exceptions = require('./exceptions')
 const register = require('./register')
 const runner = require('./runner')
 const assert = require('./assert')
+const async = require('./async')
 
 const drivenTest = {
   /**
@@ -56,9 +57,10 @@ const drivenTest = {
   },
 
   assert: assert,
+  async: async,
   exceptions: exceptions,
-  runner: runner,
-  register: register
+  register: register,
+  runner: runner
 }
 
 module.exports = drivenTest
