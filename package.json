@@ -2,10 +2,10 @@
   "name": "drivenjs",
   "version": "0.0.21",
   "description": "Just another front-end framework but simple",
-  "main": "./drivenjs",
+  "main": "./src/drivenjs",
   "scripts": {
     "build": "babel drivenjs -d lib",
-    "test": "driven-cli test"
+    "test": "driven-cli test -f src/**/test_*"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "babel-preset-env": "^1.1.8"
   },
   "bin": {
-    "driven-cli": "./driven-cli.js"
+    "driven-cli": "./src/driven-cli.js"
   },
   "dependencies": {
     "async": "^2.1.4",
