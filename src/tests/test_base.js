@@ -1,4 +1,4 @@
-const drivenTest = require('drivenjs').test
+const drivenTest = require('driven-test')
 const {suite, test, assert, setup, teardown, beforeAll, afterAll, exceptions} = drivenTest
 
 var setuped = false

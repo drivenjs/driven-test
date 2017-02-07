@@ -1,5 +1,4 @@
-const {suite, test, assert, async, exceptions} = require('drivenjs').test
-const asyncTest = require('drivenjs').test.async
+const {suite, test, assert, async, exceptions} = require('driven-test')
 
 suite('Async tests in Driven', () => {
   test('async block the execution.', async((resolve) => {

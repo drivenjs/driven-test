@@ -1,4 +1,4 @@
-const {suite, test, assert, exceptions} = require('drivenjs').test
+const {suite, test, assert, exceptions} = require('driven-test')
 
 suite('test asserts', () => {
   test('assert.true', () => {
