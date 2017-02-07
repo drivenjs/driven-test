@@ -21,9 +21,6 @@
     "babel-polyfill": "^6.20.0",
     "babel-preset-env": "^1.1.8"
   },
-  "bin": {
-    "driven-cli": "./src/driven-cli.js"
-  },
   "dependencies": {
     "async": "^2.1.4",
     "chalk": "^1.1.3",
