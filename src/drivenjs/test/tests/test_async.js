@@ -8,8 +8,8 @@ suite('Async tests in Driven', () => {
     setTimeout(() => {
       assert.true(asyncRaised)
       resolve()
-    }, 2000)
+    }, 500)
 
     asyncRaised = true
-  }))
+  }, 1000))
 })

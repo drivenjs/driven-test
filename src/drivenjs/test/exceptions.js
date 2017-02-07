@@ -124,8 +124,19 @@ class AssertInvalidThrowError extends AssertError {
   }
 }
 
+class TimeOutError extends AssertError {
+  getInfoHeader() {
+    return header.bold("TimeOut")
+  }
+
+  prettyStack() {
+    return this.getHeader()
+  }
+}
+
 module.exports = {
   AssertError: AssertError,
   AssertNonThrowError: AssertNonThrowError,
-  AssertInvalidThrowError: AssertInvalidThrowError
+  AssertInvalidThrowError: AssertInvalidThrowError,
+  TimeOutError: TimeOutError
 }
